@@ -1,0 +1,109 @@
+// This file is the descriptor for the Custom code recipe run-gan
+{
+    // Meta data for display purposes
+    "meta": {
+        // label: name of the recipe as displayed, should be short
+        "label": "Run GAN",
+        // description: longer string to help end users understand what this recipe does
+        "description": "",
+        // icon: must be one of the FontAwesome 3.2.1 icons, complete list here at https://fontawesome.com/v3.2.1/icons/
+        "icon": "icon-puzzle-piece"
+    },
+
+    "kind": "PYTHON",
+    
+
+    // Inputs and outputs are defined by roles. In the recipe's I/O tab, the user can associate one
+    // or more dataset to each input and output role.
+
+    // The "arity" field indicates whether the user can associate several datasets to the role ('NARY')
+    // or at most one ('UNARY'). The "required" field indicates whether the user is allowed to
+    // associate no dataset with the role.
+
+    "inputRoles": [
+        {
+            "name": "image_input_folder",
+            "label": "Image Input Folder",
+            "description": "Managed Folder containing images",
+            "arity": "UNARY",
+            "required": true,
+            "acceptsDataset": false,
+            "acceptsManagedFolder": true
+        }
+    ],
+
+    "outputRoles": [
+        {
+            "name": "trained_models_folder",
+            "label": "Trained Models Folder",
+            "description": "Managed Folder containing trained models",
+            "arity": "UNARY",
+            "required": false,
+            "acceptsDataset": false,
+            "acceptsManagedFolder": true
+        },
+        {
+            "name": "generated_image_folder",
+            "label": "Generated Images Folder",
+            "description": "Managed Folder containing generated images",
+            "arity": "UNARY",
+            "required": false,
+            "acceptsDataset": false,
+            "acceptsManagedFolder": true
+        }
+        // ...
+    ],
+
+    /* The field "params" holds a list of all the params
+       for wich the user will be prompted for values in the Settings tab of the recipe.
+
+       The available parameter types include:
+       STRING, STRINGS, INT, DOUBLE, BOOLEAN, SELECT, MULTISELECT, MAP, TEXTAREA, PRESET, COLUMN, COLUMNS
+
+       For the full list and for more details, see the documentation: https://doc.dataiku.com/dss/latest/plugins/reference/params.html
+    */
+
+    "params": [
+        {
+            "name": "n_epochs",
+            "label": "Total Number of Epochs",
+            "type": "INT",
+            "defaultValue": 100,
+            "description": "Total number of epochs for training discriminator model",
+            "mandatory": false
+        },
+        {
+            "name": "n_images",
+            "label": "Number of Generated Images",
+            "type": "INT",
+            "defaultValue": 5,
+            "description": "The number of images to generate.",
+            "mandatory": false
+        },
+        {
+            "name": "learning_rate",
+            "label": "Learning Rate",
+            "type": "DOUBLE",
+            "defaultValue": 0.0003,
+            "description": "Learning Rate parameter for models",
+            "mandatory": false
+        },
+        {
+            "name": "beta",
+            "label": "Beta parameter for models",
+            "type": "DOUBLE",
+            "defaultValue": 0.5,
+            "description": "Beta parameter for models",
+            "mandatory": false
+        }
+    ],
+
+    // The field "resourceKeys" holds a list of keys that allows to limit the number
+    // of concurrent executions and activities triggered by this recipe.
+    //
+    // Administrators can configure the limit per resource key in the Administration > Settings > Flow build
+    // screen.
+
+    "resourceKeys": []
+
+}
